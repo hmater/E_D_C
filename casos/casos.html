@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <script src="casos.js"></script>
+    <script src="../common.js"></script>
+    <link rel="stylesheet" href="../all.css">
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .hidden{
+            display: none;
+        }
+        .layer, .layer *{
+            padding: 10px;
+            /*margin: 10px;*/
+        }
+
+        .titulo{
+            font-size: 35px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 5px black,0 0 5px black;
+            text-align: center;
+        }
+        #pregunta{
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 5px black,0 0 5px black;
+            text-align: center;
+        }
+        #situacion{
+            padding: 30px 50px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            color: black;
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .opcion{
+            background-color: lightblue;
+            margin: 10px;
+            color: black !important;
+            text-shadow: 0 0 0px black !important;
+            font-size: medium;
+            font-weight: 400;
+            border-radius: 20px;
+        }
+        .opcion:hover{
+            background-color:aqua;
+            box-shadow: 0 0 10px aquamarine;
+        }
+
+        .fondo{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        z-index: -10;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: 0;
+        background-image: url('img1.jpg');
+
+        }
+        #fondo1{
+            background-image: url('img1.jpg');
+            opacity: 0.3;
+        }
+        #fondo2{
+            background-image: url('img2.jpg');
+        }
+        #fondo3{
+            background-image: url('img3.jpg');
+        }
+
+        #level_selector{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .boton{
+            display: block;
+            margin: 50px auto;
+            /*padding: 20px;*/
+            width: 300px;
+            height: 120px;
+
+
+            font-size: 25px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 5px black,0 0 5px black;
+            text-align: center;
+            border: 0px transparent;
+            border-radius: 10px;
+            background-color: lightblue;
+        }
+        .boton:hover{
+            border: 0px transparent;
+            background-color: aqua;
+            box-shadow: 0 0 10px aquamarine;
+        }
+
+        /*.b{
+            background-color: darkgreen;
+        }
+        .m{
+            background-color: darkgoldenrod;
+        }
+        .a{
+            background-color: darkred;
+        }*/
+
+
+    </style>
+</head>
+<body>
+    <div class="fondo" id="fondo1"></div>
+    <div class="fondo" id="fondo2"></div>
+    <div class="fondo" id="fondo3"></div>
+
+<!-- Contenedores para mostrar información del juego -->
+<div class="layer hidden" id="game">
+    <div id="titulo" class="titulo"></div>
+    <div id="situacion"></div>
+    <div id="pregunta"></div>
+</div>
+
+<div class="layer"  id="level_selector">
+    <h1 class="titulo">SELECCIONA UN NIVEL</h1>
+    <button class="boton b" onclick="iniciarJuego('basico')">Básico</button>
+    <button class="boton m" onclick="iniciarJuego('medio')">Medio</button>
+    <button class="boton a" onclick="iniciarJuego('avanzado')">Avanzado</button>
+</div>
+
+<script>
+var puntaje = 0;
+var nivelActual;
+var indicePregunta = 0;
+var situacion = 0;
+
+function Reset(){
+    document.getElementById("titulo").innerHTML = ""
+    document.getElementById("situacion").innerHTML = ""
+    document.getElementById("pregunta").innerHTML = ""
+    document.querySelector('#level_selector').classList.toggle("hidden")
+    document.querySelector('#game').classList.toggle("hidden")
+}
+
+function iniciarJuego(nivel) {
+    document.querySelector('#level_selector').classList.toggle("hidden")
+    document.querySelector('#game').classList.toggle("hidden")
+    nivelActual = nivel;
+    puntaje = 0;
+    indicePregunta = 0;
+    totalPreguntas = 0;
+    situacion = 0;
+    mostrarSituacion();
+    mostrarSiguientePregunta();
+
+    fb = document.getElementById("fondo1")
+    fm = document.getElementById("fondo2")
+    fa = document.getElementById("fondo3")
+
+    if(nivel == 'basico'){
+        fb.style.opacity = '0.3'
+        fm.style.opacity = '0'
+        fa.style.opacity = '0'
+    }
+    if(nivel == 'medio'){
+        fb.style.opacity = '0'
+        fm.style.opacity = '0.3'
+        fa.style.opacity = '0'
+    }
+    if(nivel == 'avanzado'){
+        fb.style.opacity = '0'
+        fm.style.opacity = '0'
+        fa.style.opacity = '0.3'
+    }
+}
+
+function mostrarSituacion() {
+    var tituloDiv = document.getElementById("titulo");
+    var situacionDiv = document.getElementById("situacion");
+
+    tituloDiv.innerText = casos[nivelActual][situacion].titulo;
+    situacionDiv.innerText = casos[nivelActual][situacion].situacion;
+}
+
+function mostrarSiguientePregunta() {
+    totalPreguntas++
+    var preguntaDiv = document.getElementById("pregunta");
+    var preguntaSiguiente = casos[nivelActual][situacion].preguntas[indicePregunta];
+
+    preguntaDiv.innerText = preguntaSiguiente.pregunta;
+
+    //preguntaDiv.innerHTML = "";
+
+    for (var i = 0; i < preguntaSiguiente.alternativas.length; i++) {
+        var opcionDiv = document.createElement("div");
+        opcionDiv.className = "opcion";
+        opcionDiv.innerText = preguntaSiguiente.alternativas[i].opcion;
+
+        opcionDiv.onclick = function () {
+            if(casos[nivelActual][situacion].preguntas[indicePregunta].alternativas.filter(alternativa => alternativa.correcta != 'FALSA').length != 0 & casos[nivelActual][situacion].preguntas[indicePregunta].alternativas.filter(alternativa => alternativa.correcta != 'FALSA')[0].opcion === this.innerText){
+                puntaje++; 
+            }
+            console.log(puntaje)
+            
+            if(casos[nivelActual][situacion].preguntas.length > indicePregunta+1){
+                indicePregunta++
+                mostrarSiguientePregunta();
+            }else{
+                if(casos[nivelActual].length > situacion+1){
+                    situacion++
+                    indicePregunta=0;
+                    mostrarSituacion();
+                    mostrarSiguientePregunta()
+                }else{
+                    //max_score = (situacion+1)*(totalPreguntas+1)
+                    console.log(puntaje)
+                    console.log(totalPreguntas)
+                    showScore(puntaje, totalPreguntas, 4)
+                    //Reset();
+                }
+            }
+        };
+        preguntaDiv.appendChild(opcionDiv);
+    }
+}
+
+</script>
+
+
+<script>loadExit()</script>
+</body>
+</html>

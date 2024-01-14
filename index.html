@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERCERO</title>
+    <link rel="stylesheet" href="all.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: url(uda.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: auto;
+            height: 100vh;
+        }
+        .warp{
+            width: 100px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            background-image: url('brillo_.gif');
+            background-position: center;
+            background-size: 150%;
+            box-shadow: inset 0 0 10px white, inset 0 0 15px white, inset 0 0 5px white;
+        }
+        .warp:hover{
+            box-shadow:   inset 0 0 10px white, inset 0 0 15px white, inset 0 0 5px white,
+                                0 0 10px yellow,  0 0 15px yellow,  0 0 5px yellow;
+        }
+        
+
+        #d1{
+            left: 15%;
+            top:  55%;
+        }
+        #d2{
+            left: 35%;
+            top:  40%;
+        }
+        #d3{
+            left: 55%;
+            top:  40%;
+        }
+        #d4{
+            left: 75%;
+            top:  55%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="d1" class="warp" onclick="window.location='sopa/sopa.html'"></div>
+    <div id="d2" class="warp" onclick="window.location='concentracion/concentracion.html'"></div>
+    <div id="d3" class="warp" onclick="window.location='adivina/adivina.html'"></div>
+    <div id="d4" class="warp" onclick="window.location='casos/casos.html'"></div>
+    
+</body>
+</html>

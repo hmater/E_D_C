@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../all.css">
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #fondo{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-position: center;
+        }
+        .result{
+            margin: auto;
+            text-align: center;
+            color: white;
+            font-size: large;
+            text-shadow: 0 0 10px black;
+
+        }
+        .options{
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: red;
+            position: absolute;
+            top: 30%;
+            background-color: lightblue;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 25px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 5px black, 0 0 5px black;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .options:hover{
+            background-color: aqua;
+            box-shadow: 0 0 10px aquamarine;
+        }
+        #jugar{
+            left: 10%;
+        }
+        #salir{
+            right: 10%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="fondo">
+
+    <div class="result">
+        <h1 id="mensaje">...</h1>
+    </div>
+
+    <div id="jugar" class="options" onclick="replay()"> <p> Volver a jugar </p> </div>
+    <div id="salir" class="options" onclick="inicio()"> <p> Ir al inicio </p> </div>
+</div>
+
+    <script>
+
+        var queryString = window.location.search.substring(1);
+        var params = new URLSearchParams(queryString);        
+        if(!params.has('p') || !params.has('g') || !['1','2','3','4'].includes(params.get('g'))){ window.location='..' }
+        var p = params.get('p'); var g = params.get('g');
+        var img_fondo = ""; var texto = ""; p = Number(p).toFixed(2); var link = "";
+        if (p==100) { img_fondo = "url('gold.png')"   ; texto="EXCELENTE, "+p+"% COMPLETADO"}
+        if (p<100)  { img_fondo = "url('silver.png')" ; texto="MUY BIEN, "+p+"% COMPLETADO"}
+        if (p<75)   { img_fondo = "url('bronze.png')" ; texto="SIGUE PRACTICANDO, "+p+"% COMPLETADO"}
+        if (p<50)   { img_fondo = "url('no.png')"     ; texto="PUEDES HACERLO MEJOR, "+p+"% COMPLETADO"}
+        if(g==1)    { link = '../sopa/sopa.html'                    }
+        if(g==2)    { link = '../concentracion/concentracion.html'  }
+        if(g==3)    { link = '../adivina/adivina.html'              }
+        if(g==4)    { link = '../casos/casos.html'                  }
+        document.getElementById('fondo').style.backgroundImage = img_fondo;
+        document.getElementById('mensaje').innerText = texto;
+        function replay(){ window.location.assign(link); }
+        function inicio(){ window.location.assign('..'); }
+
+    </script>
+    
+</body>
+</html>

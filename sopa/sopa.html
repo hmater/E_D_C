@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+     <title>Sopa de letras</title>
+    <link rel="stylesheet" href="wordsearch.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="../common.js"></script>
+    <link rel="stylesheet" href="../all.css">
+  </head>
+  <body>
+
+    <div id="fondo"></div>
+
+
+    <div class="wrap">
+      <h1 class="logo">Sopa de letras</h1>
+      <section id="ws-area"></section>
+      <ul class="ws-words"></ul>
+    </div>
+    <script src="utility.js"></script>
+    <script src="wordsearch.js"></script>
+    <script type="text/javascript">
+      var gameAreaEl = document.getElementById('ws-area');
+      var gameobj = gameAreaEl.wordSearch();
+
+      // Put words into `.ws-words`
+      var words = gameobj.settings.wordsList,
+        wordsWrap = document.querySelector('.ws-words');
+      for (i in words) {
+        var liEl = document.createElement('li');
+        liEl.setAttribute('class', 'ws-word');
+        liEl.innerText = words[i];
+        wordsWrap.appendChild(liEl);
+      }
+
+
+    </script>
+
+<script>loadExit()</script>
+  </body>
+</html>

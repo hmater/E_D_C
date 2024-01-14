@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../common.js"></script>
+    <link rel="stylesheet" href="../all.css">
+
+
+    <title>Adivina</title>
+    <style>
+
+        html, body {
+
+            overflow: hidden;
+            margin: 0 !important;
+            padding: 0;
+            color: white;
+            /*background-color: black;*/
+            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+        }
+        #fondo{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        margin: 0px;
+        z-index: -10;
+        filter: brightness(150%) grayscale(40%) hue-rotate(15deg)
+        }
+
+        *{
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        
+        #container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text{
+            display: flex;
+            font-size: 4em;
+            font-family: monospace;
+            max-width: 80%;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+        #desc{
+            font-size: 1.5em;
+            
+        }
+        form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #score,  #score *{
+            text-align: center;
+            display: flex;
+            font-size: 2em;
+            margin-top: 10%;
+            
+        }
+        #input{
+            border: 0;
+            background-color: rgba(100, 100, 100, 0.8);
+            color: white;
+        }
+        #word{
+            letter-spacing: 5px;
+        }
+
+        #fondo{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            margin: 0px;
+            z-index: -10;
+            filter: brightness(200%) grayscale(40%) hue-rotate(15deg)
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="fondo"></div>
+    <div id="container">
+        <div    id="word"      class="text"></div>
+
+        <form id="form" onsubmit="check_word(event)">
+            <input  autofocus placeholder="" onpaste="return false;"  ondrop="return false;" autocomplete="off" id="input"     class="text"       type="text">
+        </form>
+        
+        <div    id="desc"   class="text"></div>
+        <div    id="score"     class="text"></div>
+    </div>
+</body>
+
+<script src="script.js"></script>
+
+<script>loadExit()</script>
+
+</html>

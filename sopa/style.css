@@ -1,0 +1,86 @@
+#fondo{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  z-index: -10;
+  filter: brightness(200%) grayscale(40%) hue-rotate(15deg)
+}
+
+li{
+  list-style: none;
+}
+
+body, h1 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+body {
+  color:white;
+  font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Common */
+
+.fix {
+  *zoom: 1;
+}
+
+.fix:after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+/* Home */
+
+.wrap {
+  width: 960px;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+  position:relative;
+}
+
+.logo, #gameArea {
+  margin-bottom: 40px;
+}
+
+.ws-area, .ws-words {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ws-words {
+  margin-left: 20px;
+  text-align: left;
+
+}
+
+.ws-word {
+  margin-bottom: 30px;
+  font-size: 1.7em;
+}
+
+.ws-words ::first-letter{
+	text-transform : capitalize;
+}
+
+li{
+  margin: 15px;
+}

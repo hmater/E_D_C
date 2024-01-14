@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="" />
+  <script src="../common.js"></script>
+  <script src="../con_sig.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="../all.css">
+
+
+  <title>Concentración</title>
+
+  <link rel="stylesheet" href="concentracion.css">
+  <style>
+
+    
+    .super-layout{
+        position: absolute;
+        width: 250px;
+        height: 300px;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+    }
+    .super-layout .exit_door{
+        width: 100px;
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        transition: all 1s;
+        filter: drop-shadow( 0 0 10px rgb(255, 255, 255));
+    }
+    .super-layout .exit_door:hover{
+        width: 130px;
+        filter: 
+        drop-shadow( 0 0 20px rgb(120, 235, 255))
+        drop-shadow( 0 0 10px rgb(255, 255, 255));
+    }
+    .super-layout .exit_text{
+        font-family: system-ui, sans-serif;
+        color: transparent;
+        position: absolute;
+        bottom: 180px;
+        left: 40px;
+        font-size: 20px;
+        font-weight: 600;
+        text-shadow: 0 0 10px black;
+        transition: all 1s;
+    }
+    .exit_door:hover ~ .exit_text{
+        display: block;
+        font-size: 30px;
+        color: white;
+    }
+
+    #fondo{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  z-index: -10;
+  filter: brightness(200%) grayscale(40%) hue-rotate(15deg)
+}
+
+.front-txt{
+    position: absolute;
+    color: black;
+    transform: rotateY(180deg);
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5%;
+    border-radius: 10px;
+}
+    
+  </style>
+</head>
+<body>
+  <!--div class="super-layout">
+    <img class="exit_door" src="commons/exit_door.png" alt="salida" onclick="window.location='a3_room_1.html'">
+    <p class="exit_text">Salir</p>
+</div-->
+<div id="fondo"></div>
+
+    <h1>Concentración</h1>
+
+  <section class="memory-game">
+    <div class="winner"></div>
+  </section>
+
+  
+
+  <script src="concentracion.js"></script>
+
+  <script>loadExit()</script>
+</body>
+</html>
